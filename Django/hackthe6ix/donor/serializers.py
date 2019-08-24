@@ -4,4 +4,4 @@ from .models import Donor
 class DonorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donor
-        fields = ('id', 'name', 'email')
+        fields = ('id', 'user', 'customerId')
