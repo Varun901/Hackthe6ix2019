@@ -25,8 +25,21 @@ SECRET_KEY = 'at(e4k2$2amzp!z*er-$_wpmzyx@c-2ym!(wc$bv6klc_&r+4)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'admin6',
+        'HOST': 'hack6.database.windows.net',
+        'USER': 'admin6',
+        'PASSWORD': '!X8WChQdR;',
+
+        'OPTIONS': {
+            'driver': 'ODBC Driver 13 for SQL Server',
+        }
+    }
+}
 
 # Application definition
 
