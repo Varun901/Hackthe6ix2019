@@ -29,17 +29,24 @@ ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'hack6',
-        'HOST': 'hack6.database.windows.net',
-        'USER': 'admin6',
-        'PASSWORD': '!X8WChQdR;',
-
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'sql_server.pyodbc',
+#         'NAME': 'hack6',
+#         'HOST': 'hack6.database.windows.net',
+#         'USER': 'admin6',
+#         'PASSWORD': '!X8WChQdR;',
+
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#         }
+#     }
+# }
 
 # Application definition
 
