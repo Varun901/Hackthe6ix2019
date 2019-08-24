@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hackthe6ix/app.dart';
+import 'package:hackthe6ix/sign_up_in_need.dart';
 
 class InNeed extends StatelessWidget {
   @override
@@ -29,12 +30,17 @@ class InNeed extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Material(
-                      child: Container(
-                        alignment: Alignment.topCenter,
-                        child: Text(
-                          'in need',
-                          style: Theme.of(context).textTheme.display3,
-                        ),
+                      child: Padding(
+                        child: Stack(children: <Widget>[
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Text(
+                              'in need',
+                              style: Theme.of(context).textTheme.display3,
+                            ),
+                          ),
+                          SignUpInNeed(),
+                        ]),
                         padding: EdgeInsets.all(12),
                       ),
                       shape: RoundedRectangleBorder(

@@ -41,10 +41,6 @@ class App extends StatelessWidget {
         primaryColor: kAmazonite,
         scaffoldBackgroundColor: kPurpleNavy,
         textTheme: TextTheme(
-          body1: TextStyle(
-            color: kTurquoise,
-            fontFamily: 'SourceSansPro',
-          ),
           display1: TextStyle(
             color: kTurquoise,
             fontFamily: 'SourceSansPro',

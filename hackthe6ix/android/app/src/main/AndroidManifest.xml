@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lev1ty.hackthe6ix">
+    <meta-data
+          android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+          android:value="ocr" />
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
