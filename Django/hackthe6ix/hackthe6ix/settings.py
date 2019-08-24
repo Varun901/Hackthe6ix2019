@@ -25,18 +25,18 @@ SECRET_KEY = 'at(e4k2$2amzp!z*er-$_wpmzyx@c-2ym!(wc$bv6klc_&r+4)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'admin6',
+        'NAME': 'hack6',
         'HOST': 'hack6.database.windows.net',
         'USER': 'admin6',
         'PASSWORD': '!X8WChQdR;',
 
         'OPTIONS': {
-            'driver': 'ODBC Driver 13 for SQL Server',
+            'driver': 'ODBC Driver 17 for SQL Server',
         }
     }
 }
@@ -87,13 +87,6 @@ WSGI_APPLICATION = 'hackthe6ix.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
