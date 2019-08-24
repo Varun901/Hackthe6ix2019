@@ -15,5 +15,3 @@ class Donor(models.Model):
                                 primary_key=True,
                                 related_name='user')
     customerId = models.CharField()
-
-    
