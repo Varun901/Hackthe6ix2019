@@ -16,6 +16,7 @@ class Recipient(models.Model):
                                 on_delete=models.CASCADE,
                                 primary_key=True,
                                 related_name='Recipient')
+    location = models.CharField(max_length=30)
     yearly_income = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
     total_reimbursements_accepted = models.IntegerField(default=0)
     total_reimbursements_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
