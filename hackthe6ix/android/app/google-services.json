@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "734958492926",
+    "firebase_url": "https://community-102d7.firebaseio.com",
+    "project_id": "community-102d7",
+    "storage_bucket": "community-102d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734958492926:android:f0399fbda8c861a4",
+        "android_client_info": {
+          "package_name": "com.lev1ty.hackthe6ix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734958492926-4pu1jm970lp97ir0da30d13ohflfi43n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lev1ty.hackthe6ix",
+            "certificate_hash": "b7ecf38856e449085e93b623ae642a177ed821b1"
+          }
+        },
+        {
+          "client_id": "734958492926-nf6ql115e600affl6kb1cdj7v7i99g6u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhtdRUyxC4qaTFyoDVhJOtnagEJX0E8Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734958492926-nf6ql115e600affl6kb1cdj7v7i99g6u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
