@@ -108,22 +108,17 @@ class Home extends StatelessWidget {
                 ),
                 padding: EdgeInsets.fromLTRB(0, 0, 12, 120),
               ),
-              Align(
+              Container(
                 alignment: Alignment.topLeft,
-                child: Hero(
-                  child: Padding(
-                    child: Text(
-                      'c.',
-                      style: Theme.of(context)
-                          .textTheme
-                          .display4
-                          .copyWith(fontWeight: FontWeight.bold),
-                      textScaleFactor: .5,
-                    ),
-                    padding: EdgeInsets.fromLTRB(24, 24, 0, 0),
-                  ),
-                  tag: 'c.',
+                child: Text(
+                  'c.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .display4
+                      .copyWith(fontWeight: FontWeight.bold),
+                  textScaleFactor: .5,
                 ),
+                padding: EdgeInsets.fromLTRB(24, 24, 0, 0),
               ),
             ]),
             duration: Duration(milliseconds: 200),

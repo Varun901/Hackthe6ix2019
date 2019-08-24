@@ -17,7 +17,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/',
       onGenerateRoute: (routeSettings) {
         final name = routeSettings.name;
         if (session == null)
@@ -26,8 +26,7 @@ class App extends StatelessWidget {
         else
           session
               .then((session) => session.setData({'route': name}, merge: true));
-        if (name == '/home')
-          return MaterialPageRoute(builder: (context) => Home());
+        if (name == '/') return MaterialPageRoute(builder: (context) => Home());
         if (name == '/in_need')
           return MaterialPageRoute(builder: (context) => InNeed());
         if (name == '/sponsor')
@@ -38,6 +37,7 @@ class App extends StatelessWidget {
         accentColor: kBrilliantAzure,
         backgroundColor: kPurpleNavy,
         canvasColor: Colors.transparent,
+        iconTheme: IconThemeData(color: kTurquoise),
         primaryColor: kAmazonite,
         scaffoldBackgroundColor: kPurpleNavy,
         textTheme: TextTheme(
