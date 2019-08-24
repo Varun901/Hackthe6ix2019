@@ -1,12 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hackthe6ix/app.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<DocumentReference>(
+        body: FutureBuilder<bool>(
       builder: (context, snapshot) {
         return Stack(children: <Widget>[
           AnimatedAlign(
@@ -21,7 +19,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.all(24).copyWith(bottom: 48),
             ),
             curve: Curves.decelerate,
-            duration: Duration(seconds: 1),
+            duration: Duration(milliseconds: 200),
           ),
           AnimatedOpacity(
             child: Stack(children: <Widget>[
@@ -29,67 +27,76 @@ class Home extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: Column(
                   children: <Widget>[
-                    Hero(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Material(
-                          child: InkWell(
-                            child: Padding(
-                              child: Text(
-                                'Sponsor',
-                                style: Theme.of(context).textTheme.display3,
+                    Row(children: <Widget>[
+                      Expanded(child: Container()),
+                      Hero(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Material(
+                            child: InkWell(
+                              child: Padding(
+                                child: Text(
+                                  'Sponsor',
+                                  style: Theme.of(context).textTheme.display3,
+                                ),
+                                padding: EdgeInsets.all(12),
                               ),
-                              padding: EdgeInsets.all(12),
+                              highlightColor: Theme.of(context).canvasColor,
+                              onTap: () =>
+                                  Navigator.of(context).pushNamed('/sponsor'),
+                              splashColor: Theme.of(context).accentColor,
                             ),
-                            highlightColor: Theme.of(context).canvasColor,
-                            onTap: () =>
-                                Navigator.of(context).pushNamed('/sponsor'),
-                            splashColor: Theme.of(context).accentColor,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(
-                              width: 2,
-                              color: Theme.of(context).textTheme.display3.color,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: BorderSide(
+                                width: 2,
+                                color:
+                                    Theme.of(context).textTheme.display3.color,
+                              ),
                             ),
                           ),
                         ),
+                        tag: 'Sponsor',
                       ),
-                      tag: 'Sponsor',
-                    ),
+                    ]),
                     Padding(
                       child: Text('someone',
                           style: Theme.of(context).textTheme.display1),
                       padding: EdgeInsets.all(12),
                     ),
-                    Hero(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Material(
-                          child: InkWell(
-                            child: Padding(
-                              child: Text(
-                                'in need',
-                                style: Theme.of(context).textTheme.display3,
+                    Row(children: <Widget>[
+                      Expanded(child: Container()),
+                      Hero(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Material(
+                            child: InkWell(
+                              child: Container(
+                                alignment: Alignment.topCenter,
+                                child: Text(
+                                  'in need',
+                                  style: Theme.of(context).textTheme.display3,
+                                ),
+                                padding: EdgeInsets.all(12),
                               ),
-                              padding: EdgeInsets.all(12),
+                              highlightColor: Theme.of(context).canvasColor,
+                              onTap: () =>
+                                  Navigator.of(context).pushNamed('/in_need'),
+                              splashColor: Theme.of(context).accentColor,
                             ),
-                            highlightColor: Theme.of(context).canvasColor,
-                            onTap: () =>
-                                Navigator.of(context).pushNamed('/in_need'),
-                            splashColor: Theme.of(context).accentColor,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(
-                              width: 2,
-                              color: Theme.of(context).textTheme.display3.color,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: BorderSide(
+                                width: 2,
+                                color:
+                                    Theme.of(context).textTheme.display3.color,
+                              ),
                             ),
                           ),
                         ),
+                        tag: 'in need',
                       ),
-                      tag: 'in need',
-                    ),
+                    ]),
                     Padding(
                       child: Text('in your',
                           style: Theme.of(context).textTheme.display1),
@@ -101,31 +108,30 @@ class Home extends StatelessWidget {
                 ),
                 padding: EdgeInsets.fromLTRB(0, 0, 12, 120),
               ),
-              Hero(
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'c.',
-                    style: Theme.of(context)
-                        .textTheme
-                        .display4
-                        .copyWith(fontWeight: FontWeight.bold),
-                    textScaleFactor: .5,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Hero(
+                  child: Padding(
+                    child: Text(
+                      'c.',
+                      style: Theme.of(context)
+                          .textTheme
+                          .display4
+                          .copyWith(fontWeight: FontWeight.bold),
+                      textScaleFactor: .5,
+                    ),
+                    padding: EdgeInsets.fromLTRB(24, 24, 0, 0),
                   ),
-                  padding: EdgeInsets.fromLTRB(24, 24, 0, 0),
+                  tag: 'c.',
                 ),
-                tag: 'c.',
               ),
             ]),
-            duration: Duration(seconds: 1),
+            duration: Duration(milliseconds: 200),
             opacity: snapshot.hasData ? 1 : 0,
           ),
         ]);
       },
-      future: Future.delayed(Duration(seconds: 2), () {
-        App.session = Firestore.instance.collection('session').document();
-        return App.session;
-      }),
+      future: Future.delayed(Duration(seconds: 2), () => true),
     ));
   }
 }

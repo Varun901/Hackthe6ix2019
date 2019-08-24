@@ -11,7 +11,7 @@ class App extends StatelessWidget {
   static const kTurquoise = Color(0xFF36F1CD);
   static const kAmazonite = Color(0xFF13C4A3);
   static const kJet = Color(0xFF32322C);
-  static DocumentReference session;
+  static Future<DocumentReference> session;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,12 @@ class App extends StatelessWidget {
       initialRoute: '/home',
       onGenerateRoute: (routeSettings) {
         final name = routeSettings.name;
+        if (session == null)
+          session =
+              Firestore.instance.collection('session').add({'route': name});
+        else
+          session
+              .then((session) => session.setData({'route': name}, merge: true));
         if (name == '/home')
           return MaterialPageRoute(builder: (context) => Home());
         if (name == '/in_need')
