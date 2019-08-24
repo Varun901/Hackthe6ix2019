@@ -8,15 +8,24 @@ class Donor(models.Model):
                                 primary_key=True,
                                 related_name='Donor')
     customerId = models.CharField(max_length=50)
+    total_reimbursements_made = models.IntegerField(default=0)
+    total_reimbursements_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
 
 class Recipient(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 primary_key=True,
                                 related_name='Recipient')
+    yearly_income = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
+    total_reimbursements_accepted = models.IntegerField(default=0)
+    total_reimbursements_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
 
 class Store(models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length = 50)
+    location = models.CharField(max_length = 200)
+    total_purchases_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
+    total_reimbursements_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
 
 class Purchase(models.Model):
     id = models.AutoField(primary_key=True)
@@ -29,5 +38,6 @@ class Purchase(models.Model):
     store = models.ForeignKey(Store,
                             on_delete=models.SET_NULL,
                             null=True)
+    purchase_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
 
 
