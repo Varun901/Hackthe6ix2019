@@ -3,3 +3,5 @@ Django/hackthe6ix/hackthe6ix/__pycache__/
 Django/hackthe6ix/donor/__pycache__/
 *.pyc
 *.pyc
+*.sqlite3
+Django/hackthe6ix/donor/management/commands/
