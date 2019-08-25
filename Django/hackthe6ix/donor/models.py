@@ -21,8 +21,8 @@ class Recipient(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='Recipient',
                                 null=True)
-    latitude = models.DecimalField(max_digits=10,decimal_places=8)
-    longitude = models.DecimalField(max_digits=10,decimal_places=8)
+    latitude = models.DecimalField(default=0.0, max_digits=10,decimal_places=8)
+    longitude = models.DecimalField(default=0.0, max_digits=10,decimal_places=8)
     uid = models.CharField(max_length=30,null=True)
     yearly_income = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
     total_reimbursements_accepted = models.IntegerField(default=0)
