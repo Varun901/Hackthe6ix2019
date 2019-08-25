@@ -1,6 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_camera_ml_vision/flutter_camera_ml_vision.dart';
 import 'package:hackthe6ix/app.dart';
 import 'package:hackthe6ix/main.dart';
 
@@ -8,31 +7,32 @@ class SignUpInNeed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Column(
-          children: <Widget>[
-            Text(
-              'Please take a photo of your tax assessment. It should look like this.',
-              style: Theme.of(context).textTheme.display1,
-              textScaleFactor: .5,
+      backgroundColor: Colors.transparent,
+      body: Column(
+        children: <Widget>[
+          Text(
+            'Please take a photo of your tax assessment. It should look like this.',
+            style: Theme.of(context).textTheme.display1,
+            textScaleFactor: .5,
+          ),
+          Container(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              child: SingleChildScrollView(
+                  child: Image.asset('assets/tax_assessment.jpg')),
+              height: MediaQuery.of(context).size.height / 3,
             ),
-            Container(height: 12),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                child: SingleChildScrollView(
-                    child: Image.asset('assets/tax_assessment.jpg')),
-                height: MediaQuery.of(context).size.height / 3,
-              ),
-            ),
-            Container(height: 12),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: SignUpInNeedCamera(),
-            ),
-          ],
-          mainAxisAlignment: MainAxisAlignment.end,
-        ));
+          ),
+          Container(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: SignUpInNeedCamera(),
+          ),
+        ],
+        mainAxisAlignment: MainAxisAlignment.end,
+      ),
+    );
   }
 }
 
@@ -91,8 +91,12 @@ class _SignUpInNeedCameraState extends State<SignUpInNeedCamera> {
               Container(
                 alignment: Alignment.topRight,
                 child: Padding(
-                  child: Icon(Icons.camera, size: 36),
-                  padding: EdgeInsets.all(24),
+                  child: IconButton(
+                    icon: Icon(Icons.camera, size: 36),
+                    onPressed: () => Navigator.of(context)
+                        .pushNamed('/sign_up_in_need_success'),
+                  ),
+                  padding: EdgeInsets.all(12),
                 ),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
