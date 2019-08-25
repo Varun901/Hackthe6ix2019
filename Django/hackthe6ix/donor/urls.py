@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
 from rest_framework import routers
+from rest_framework.urlpatterns import format_suffix_patterns
 
 router = routers.DefaultRouter()
 router.register('donors', views.DonorView)
@@ -9,5 +10,10 @@ router.register('stores', views.StoreView)
 router.register('purchases', views.PurchaseView)
 
 urlpatterns = [
-    path("", include(router.urls))
+	path('login/donor/', views.DonorLogin.as_view()),
+    path('login/recipient/', views.RecipientLogin.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
+
+urlpatterns.append(path('', include(router.urls)))

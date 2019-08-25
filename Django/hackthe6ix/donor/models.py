@@ -5,18 +5,20 @@ from django.contrib.auth.models import User
 class Donor(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
-                                primary_key=True,
-                                related_name='Donor')
+                                related_name='Donor',
+                                null=True)
     customerId = models.CharField(max_length=50)
+    uid = models.CharField(max_length=30,null=True)
     total_reimbursements_made = models.IntegerField(default=0)
     total_reimbursements_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
 
 class Recipient(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
-                                primary_key=True,
-                                related_name='Recipient')
+                                related_name='Recipient',
+                                null=True)
     location = models.CharField(max_length=30)
+    uid = models.CharField(max_length=30,null=True)
     yearly_income = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
     total_reimbursements_accepted = models.IntegerField(default=0)
     total_reimbursements_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
