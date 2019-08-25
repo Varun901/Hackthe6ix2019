@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hackthe6ix/app.dart';
 import 'package:hackthe6ix/sign_up_in_need.dart';
+import 'package:location/location.dart';
 
 class InNeed extends StatelessWidget {
   @override
@@ -69,7 +70,12 @@ class InNeed extends StatelessWidget {
             final user =
                 (await FirebaseAuth.instance.signInWithCredential(credential))
                     .user;
-            (await App.session).setData({'uid': user.uid}, merge: true);
+            final location = await Location().getLocation();
+            (await App.session).setData({
+              'latitude': location.latitude,
+              'longitude': location.longitude,
+              'uid': user.uid,
+            }, merge: true);
             return true;
           }),
         ),

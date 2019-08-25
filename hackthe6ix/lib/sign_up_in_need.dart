@@ -49,16 +49,13 @@ class _SignUpInNeedCameraState extends State<SignUpInNeedCamera> {
     super.initState();
     cameraController =
         CameraController(cameraDescriptions.first, ResolutionPreset.max);
-    cameraController.initialize().then((_) {
-      if (!mounted) return;
-      setState(() {});
-    });
+    cameraController.initialize().then((_) => setState(() {}));
   }
 
   @override
   void dispose() {
     super.dispose();
-    cameraController?.dispose();
+    cameraController.dispose();
   }
 
   @override

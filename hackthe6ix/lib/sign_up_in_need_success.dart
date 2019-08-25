@@ -6,31 +6,33 @@ class SignUpInNeedSuccess extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       child: Scaffold(
-          body: InkWell(
-        child: Center(
-            child: Padding(
-          child: FutureBuilder<bool>(
-            builder: (context, snapshot) {
-              String string;
-              if (!snapshot.hasData)
-                string = 'Please wait while we authenticate your statement...';
-              else
-                string = snapshot.data
-                    ? 'You were successful in your application.'
-                    : 'An error occurred, please try again later.';
-              return Text(
+          body: FutureBuilder<bool>(
+        builder: (context, snapshot) {
+          String string;
+          if (!snapshot.hasData)
+            string = 'Please wait while we authenticate your statement...';
+          else
+            string = snapshot.data
+                ? 'You were successful in your application.'
+                : 'An error occurred, please try again later.';
+          return InkWell(
+            child: Center(
+                child: Padding(
+              child: Text(
                 string,
                 style: Theme.of(context).textTheme.display3,
                 textScaleFactor: .5,
-              );
-            },
-            future: Future.delayed(Duration(seconds: 3), () => true),
-          ),
-          padding: EdgeInsets.all(24),
-        )),
-        highlightColor: Theme.of(context).canvasColor,
-        onTap: () => Navigator.of(context).pushNamed('/'),
-        splashColor: Theme.of(context).accentColor,
+              ),
+              padding: EdgeInsets.all(24),
+            )),
+            highlightColor: Theme.of(context).canvasColor,
+            onTap: !snapshot.hasData
+                ? null
+                : () => Navigator.of(context).pushNamed('/'),
+            splashColor: Theme.of(context).accentColor,
+          );
+        },
+        future: Future.delayed(Duration(seconds: 3), () => true),
       )),
       data: Theme.of(context).copyWith(
         scaffoldBackgroundColor: App.kAmazonite,

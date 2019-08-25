@@ -3,6 +3,7 @@
     <meta-data
           android:name="com.google.firebase.ml.vision.DEPENDENCIES"
           android:value="ocr" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -13,6 +14,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="hackthe6ix"
         android:icon="@mipmap/ic_launcher">
+	<meta-data
+	    android:name="com.google.android.geo.API_KEY"
+	    android:value="AIzaSyCiY-POBe1CXFeE5wfRz7Seu9bqu13QCZY" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
