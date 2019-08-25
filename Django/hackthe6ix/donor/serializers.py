@@ -4,12 +4,12 @@ from .models import *
 class DonorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donor
-        fields = ('user', 'customerId','total_reimbursements_made','total_reimbursements_value')
+        fields = ('user', 'uid', 'customerId','total_reimbursements_made','total_reimbursements_value')
 
 class RecipientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipient
-        fields = ('user', 'yearly_income','total_reimbursements_accepted','total_reimbursements_value')
+        fields = ('user', 'uid','yearly_income','total_reimbursements_accepted','total_reimbursements_value')
 
 class StoreSerializer(serializers.ModelSerializer):
     class Meta:
