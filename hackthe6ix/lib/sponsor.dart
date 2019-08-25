@@ -41,7 +41,7 @@ class _SponsorState extends State<Sponsor> {
                   onMapCreated: (_mapController) =>
                       mapController = _mapController,
                   initialCameraPosition: CameraPosition(
-                      target: LatLng(_['latitude'], _['longitude']), zoom: 11),
+                      target: LatLng(_['latitude'], _['longitude']), zoom: 8),
                   markers: <Marker>{
                     for (int index = 0; index < _['purchases'].length; index++)
                       Marker(
