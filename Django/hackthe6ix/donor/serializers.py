@@ -19,7 +19,7 @@ class StoreSerializer(serializers.ModelSerializer):
 class PurchaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Purchase
-        fields = ('id', 'recipient', 'donor', 'store', 'purchase_value','hash')
+        fields = ('id', 'recipient', 'donor', 'store', 'purchase_value','uuid')
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

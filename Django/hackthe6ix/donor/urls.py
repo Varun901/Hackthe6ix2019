@@ -13,7 +13,10 @@ router.register('purchases', views.PurchaseView)
 urlpatterns = [
 	path('login/donor/', views.DonorLogin.as_view()),
     path('login/recipient/', views.RecipientLogin.as_view()),
-    path('donor/reimburse', views.Reimburse.as_view())
+    path('reimburse/', views.Reimburse.as_view()),
+    path('scan/', views.ScanPurchase.as_view()),
+    path('new-purchase/', views.NewPurchase.as_view()),
+    path('purchases/', views.GetPurchases.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

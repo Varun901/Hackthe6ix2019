@@ -38,9 +38,6 @@ class Store(models.Model):
     total_purchases_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
     total_reimbursements_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
 
-    def __str__(self):
-        return self.user.username
-
 class Purchase(models.Model):
     id = models.AutoField(primary_key=True)
     recipient = models.ForeignKey(Recipient,
@@ -53,7 +50,8 @@ class Purchase(models.Model):
                             on_delete=models.SET_NULL,
                             null=True)
     purchase_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
-    hash = models.CharField(max_length=64,default=uuid.uuid1())
+    uuid = models.CharField(max_length=64,default=uuid.uuid1())
+    #time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.id)
