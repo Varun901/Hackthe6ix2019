@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
 class Donor(models.Model):
@@ -20,7 +21,8 @@ class Recipient(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name='Recipient',
                                 null=True)
-    location = models.CharField(max_length=30)
+    latitude = models.DecimalField(max_digits=10,decimal_places=8)
+    longitude = models.DecimalField(max_digits=10,decimal_places=8)
     uid = models.CharField(max_length=30,null=True)
     yearly_income = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
     total_reimbursements_accepted = models.IntegerField(default=0)
@@ -51,6 +53,7 @@ class Purchase(models.Model):
                             on_delete=models.SET_NULL,
                             null=True)
     purchase_value = models.DecimalField(default=0.0, max_digits=20, decimal_places=2)
+    hash = models.CharField(max_length=64,default=uuid.uuid1())
 
     def __str__(self):
         return str(self.id)

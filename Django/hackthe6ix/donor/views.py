@@ -6,6 +6,7 @@ from .models import *
 from django.contrib.auth import *
 from .serializers import *
 import json
+import math
 
 # Create your views here.
 
@@ -96,14 +97,16 @@ class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-# class GetPurchases(APIView):
-#     def get(self, request):
-#             location = request.query_params.location
-#             purchases = Purchase.objects.all()
-#             purchases.sort(key=distance)
-#             return purchases
-#         def distance(point):
-#             return Math.sqrt(distance[0]**2 - distance[1]**2)
+class GetPurchases(APIView):
+    def get(self, request):
+
+        def distance(purchase):
+            return math.sqrt((purchase.user.recipient.latitude - latitude)**2 + (purchase.user.recipient.longitutde - longitude)**2)
+
+        (latitude,longitude) = (request.query_params.lat,request.query_params.longi)
+        purchases = Purchase.objects.all()
+        purchases.sort(key=distance)
+        return purchases
 
 class Reimburse(APIView):
     def post(self, request, format=None):
