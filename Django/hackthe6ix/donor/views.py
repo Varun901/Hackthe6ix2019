@@ -31,6 +31,7 @@ class DonorLogin(APIView):
         donor = Donor.objects.filter(uid=uid).first()
         if donor is None:
             user = User(username=uid,password="na",email="na")
+            user.save()
             donor = Donor(uid=uid,user=user)
             donor.save()
             return Response(
@@ -40,6 +41,7 @@ class DonorLogin(APIView):
             }
             ,200)
         else:
+            user = User.objects.get(id=donor.user.id)
             login(request,user)
             return Response(
             {
@@ -53,8 +55,9 @@ class RecipientLogin(APIView):
         data = request.data
         uid = data.get('uid')
         recipient = Recipient.objects.filter(uid=uid).first()
-        if donor is None:
+        if recipient is None:
             user = User(username=uid,password="na",email="na")
+            user.save()
             recipient = Recipient(uid=uid,user=user)
             recipient.save()
             return Response(
@@ -64,6 +67,7 @@ class RecipientLogin(APIView):
             }
             ,200)
         else:
+            user = User.objects.get(id=recipient.user.id)
             login(request,user)
             return Response(
             {
