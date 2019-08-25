@@ -9,5 +9,6 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: App.kPurpleNavy));
   cameraDescriptions = await availableCameras();
+  print(cameraDescriptions);
   return runApp(App());
 }

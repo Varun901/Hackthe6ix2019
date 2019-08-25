@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_camera_ml_vision/flutter_camera_ml_vision.dart';
+import 'package:hackthe6ix/app.dart';
 import 'package:hackthe6ix/main.dart';
 
 class SignUpInNeed extends StatelessWidget {
@@ -13,24 +14,21 @@ class SignUpInNeed extends StatelessWidget {
             Text(
               'Please take a photo of your tax assessment. It should look like this.',
               style: Theme.of(context).textTheme.display1,
-              textScaleFactor: .6,
-            ),
-            Container(height: 6),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset('assets/tax_assessment.jpg'),
+              textScaleFactor: .5,
             ),
             Container(height: 12),
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Material(
-                child: InkWell(
-                  child: SignUpInNeedCamera(),
-                  highlightColor: Theme.of(context).canvasColor,
-                  onTap: () => Navigator.of(context).pushNamed('/sponsor'),
-                  splashColor: Theme.of(context).accentColor,
-                ),
+              child: Container(
+                child: SingleChildScrollView(
+                    child: Image.asset('assets/tax_assessment.jpg')),
+                height: MediaQuery.of(context).size.height / 3,
               ),
+            ),
+            Container(height: 12),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: SignUpInNeedCamera(),
             ),
           ],
           mainAxisAlignment: MainAxisAlignment.end,
@@ -68,28 +66,52 @@ class _SignUpInNeedCameraState extends State<SignUpInNeedCamera> {
     return Container(
       child: FutureBuilder<CameraController>(
         builder: (context, snapshot) {
-          if (!snapshot.hasData)
+          if (!snapshot.hasData || !snapshot.data.value.isInitialized)
             return Center(
                 child: CircularProgressIndicator(
                     valueColor:
                         AlwaysStoppedAnimation(Theme.of(context).accentColor)));
-          return ClipRect(
-            child: OverflowBox(
-              alignment: Alignment.center,
-              child: FittedBox(
-                child: Container(
-                  child: CameraPreview(snapshot.data),
-                  height: 180,
-                  width: 180 * snapshot.data.value.aspectRatio,
+          return Stack(
+            children: <Widget>[
+              ClipRect(
+                child: OverflowBox(
+                  alignment: Alignment.center,
+                  child: FittedBox(
+                    child: Container(
+                      child: CameraPreview(snapshot.data),
+                      height: MediaQuery.of(context).size.height / 3,
+                      width: MediaQuery.of(context).size.height /
+                          3 *
+                          snapshot.data.value.aspectRatio,
+                    ),
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
-                fit: BoxFit.fitWidth,
               ),
-            ),
+              Container(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  child: Icon(Icons.camera, size: 36),
+                  padding: EdgeInsets.all(24),
+                ),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    colors: <Color>[Colors.transparent, App.kJet],
+                    end: Alignment.topRight,
+                  ),
+                ),
+              ),
+            ],
+            fit: StackFit.passthrough,
           );
         },
-        future: cameraController,
+        future: Future.sync(() async {
+          await cameraController.initialize();
+          return cameraController;
+        }),
       ),
-      height: 180,
+      height: MediaQuery.of(context).size.height / 3,
       width: double.infinity,
     );
   }
