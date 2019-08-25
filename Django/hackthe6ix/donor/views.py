@@ -57,8 +57,7 @@ class Reimburse(APIView):
         user = User.objects.get(username=request.user.username)
         purchaseId = request.data.get('purchaseId', None)
         Pur = Purchase.objects.get(id=purchaseId)
-        Don = Donor.objects.get(user=User.objects.get(id=1))
-        # Don = Donor.objects.get(user=request.user) <- Needs to work
+        Don = Donor.objects.get(user=request.user)
         Don.total_reimbursements_made += 1
         Don.total_reimbursements_value += Pur.purchase_value
         Don.save()
@@ -67,6 +66,7 @@ class Reimburse(APIView):
         Rec.total_reimbursements_accepted += 1
         Rec.save()
         Pur.doner = Don
+        print (request.user)
         # Pur.donor = request.user
         Pur.save()
         return Response({"result":"success"},status=status.HTTP_200_OK)
