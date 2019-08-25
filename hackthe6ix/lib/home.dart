@@ -98,8 +98,12 @@ class Home extends StatelessWidget {
                       ),
                     ]),
                     Padding(
-                      child: Text('in your',
-                          style: Theme.of(context).textTheme.display1),
+                      child: Row(children: <Widget>[
+                        Spacer(flex: 3),
+                        Text('in your',
+                            style: Theme.of(context).textTheme.display1),
+                        Spacer(flex: 2),
+                      ]),
                       padding: EdgeInsets.all(12),
                     ),
                   ],

@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_camera_ml_vision/flutter_camera_ml_vision.dart';
+import 'package:hackthe6ix/main.dart';
 
 class SignUpInNeed extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class SignUpInNeed extends StatelessWidget {
               style: Theme.of(context).textTheme.display1,
               textScaleFactor: .6,
             ),
-            Container(height: 12),
+            Container(height: 6),
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset('assets/tax_assessment.jpg'),
@@ -24,20 +25,10 @@ class SignUpInNeed extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Material(
                 child: InkWell(
-                  child: Padding(
-                    child: SignUpInNeedCamera(),
-                    padding: EdgeInsets.all(12),
-                  ),
+                  child: SignUpInNeedCamera(),
                   highlightColor: Theme.of(context).canvasColor,
                   onTap: () => Navigator.of(context).pushNamed('/sponsor'),
                   splashColor: Theme.of(context).accentColor,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  side: BorderSide(
-                    width: 2,
-                    color: Theme.of(context).textTheme.display3.color,
-                  ),
                 ),
               ),
             ),
@@ -53,49 +44,53 @@ class SignUpInNeedCamera extends StatefulWidget {
 }
 
 class _SignUpInNeedCameraState extends State<SignUpInNeedCamera> {
-  Future<CameraController> cameraController;
+  CameraController cameraController;
 
   @override
   void initState() {
     super.initState();
-    cameraController = availableCameras().then((cameraDescriptions) =>
-        CameraController(cameraDescriptions[0], ResolutionPreset.max))
-      ..then((cameraController) => cameraController.initialize().then((_) {
-            if (!mounted) return;
-            setState(() {});
-          }));
+    cameraController =
+        CameraController(cameraDescriptions.first, ResolutionPreset.max);
+    cameraController.initialize().then((_) {
+      if (!mounted) return;
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    cameraController?.then((cameraController) => cameraController.dispose());
+    cameraController?.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Stack(
-        children: <Widget>[
-          FutureBuilder<CameraController>(
-            builder: (context, snapshot) {
-              if (!snapshot.hasData)
-                return Center(
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(
-                            Theme.of(context).accentColor)));
-              return AspectRatio(
-                aspectRatio: snapshot.data.value.aspectRatio,
-                child: CameraPreview(snapshot.data),
-              );
-            },
-            future: cameraController,
-          )
-        ],
-        fit: StackFit.expand,
-        overflow: Overflow.clip,
+      child: FutureBuilder<CameraController>(
+        builder: (context, snapshot) {
+          if (!snapshot.hasData)
+            return Center(
+                child: CircularProgressIndicator(
+                    valueColor:
+                        AlwaysStoppedAnimation(Theme.of(context).accentColor)));
+          return ClipRect(
+            child: OverflowBox(
+              alignment: Alignment.center,
+              child: FittedBox(
+                child: Container(
+                  child: CameraPreview(snapshot.data),
+                  height: 180,
+                  width: 180 * snapshot.data.value.aspectRatio,
+                ),
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+          );
+        },
+        future: cameraController,
       ),
-      height: 120,
+      height: 180,
+      width: double.infinity,
     );
   }
 }
