@@ -9,7 +9,7 @@ class DonorSerializer(serializers.ModelSerializer):
 class RecipientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipient
-        fields = ('user', 'uid','yearly_income','total_reimbursements_accepted','total_reimbursements_value')
+        fields = ('user', 'uid','yearly_income','total_reimbursements_accepted','total_reimbursements_value', 'latitude', 'longitude')
 
 class StoreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,7 +19,7 @@ class StoreSerializer(serializers.ModelSerializer):
 class PurchaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Purchase
-        fields = ('id', 'recipient', 'donor', 'store', 'purchase_value')
+        fields = ('id', 'recipient', 'donor', 'store', 'purchase_value','hash')
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
